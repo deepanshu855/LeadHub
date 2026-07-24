@@ -7,11 +7,13 @@ import morgan from "morgan";
 const app = express();
 
 // Middlewares
-app.use(cors({
-    origin: "http://localhost:5173",
+app.use(
+  cors({
+    origin: "https://lead-hub-sandy.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-}));
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
