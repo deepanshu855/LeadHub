@@ -1,0 +1,626 @@
+/* =========================================
+   DASHBOARD LAYOUT (SaaS Aesthetic)
+   ========================================= */
+.dash-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc; /* Very light cool gray */
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #0f172a;
+}
+
+/* =========================================
+   TOP NAVIGATION
+   ========================================= */
+.dash-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.dash-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dash-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: -0.5px;
+}
+
+.dash-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #64748b;
+  border-left: 1px solid #cbd5e1;
+  padding-left: 1rem;
+}
+
+.dash-user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dash-email {
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-logout:hover {
+  color: #ef4444;
+}
+
+/* =========================================
+   MAIN CONTENT & HEADER
+   ========================================= */
+.dash-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.dash-header {
+  margin-bottom: 2rem;
+}
+
+.dash-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.dash-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+/* =========================================
+   SUMMARY CARDS
+   ========================================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px -2px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* =========================================
+   SEARCH & TABLE
+   ========================================= */
+.table-section {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+}
+
+/* Search Bar */
+.search-container {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ffffff;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  color: #94a3b8;
+}
+
+.search-input {
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px;
+  color: #0f172a;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Table Design */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dash-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.dash-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.dash-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.dash-table tbody tr:hover {
+  background-color: #f8fafc; /* Alternating/hover color */
+}
+
+/* Typography & Truncation utilities */
+.fw-600 {
+  font-weight: 600;
+  color: #0f172a;
+}
+.text-muted {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+.truncate {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================================
+   STATUS BADGES
+   ========================================= */
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-new {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.badge-contacted {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+}
+
+.badge-close {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+/* =========================================
+   ACTIONS & MODAL
+   ========================================= */
+.btn-update {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-update:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header h3 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.modal-body {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-body label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.modal-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: none;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e8f0;
+}
+
+.btn-save {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-save:hover {
+  background-color: #1d4ed8;
+}
+
+/* =========================================
+   EMPTY & LOADING STATES
+   ========================================= */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #64748b;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+/* Skeletons */
+.skeleton-row td {
+  padding: 1.25rem 1.5rem;
+}
+
+.skeleton-box {
+  height: 18px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+  width: 120px;
+}
+
+.skeleton-box.wide {
+  width: 200px;
+}
+.skeleton-box.badge-skel {
+  width: 80px;
+  border-radius: 9999px;
+}
+.skeleton-box.btn-skel {
+  width: 100px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e2e8f0;
+  }
+  50% {
+    background-color: #f1f5f9;
+  }
+  100% {
+    background-color: #e2e8f0;
+  }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media screen and (max-width: 768px) {
+  .dash-nav-container {
+    padding: 1rem;
+  }
+
+  .dash-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .dash-user-actions {
+    gap: 1rem;
+  }
+
+  .dash-email {
+    display: none; /* Hide email on mobile to save space */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   EXPANDED MODAL STYLES
+   ========================================= */
+.modal-content.modal-large {
+  max-width: 600px; /* Made the modal wider to fit data comfortably */
+  padding: 2.5rem;
+}
+
+.lead-details-body {
+  margin: 2rem 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.detail-group label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.detail-group p {
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 500;
+  margin: 0;
+}
+
+.detail-link {
+  color: #2563eb;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.detail-link:hover {
+  text-decoration: underline;
+}
+
+.highlight-text {
+  color: #0f172a;
+  background-color: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  width: max-content;
+}
+
+/* Message Box */
+.message-box {
+  margin-bottom: 1.5rem;
+}
+
+.message-content {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+  white-space: pre-wrap; /* Keeps formatting if they use line breaks */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.modal-divider {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 1.5rem 0;
+}
+
+.update-section label {
+  margin-bottom: 0.5rem;
+}
+
+/* Error Banner */
+.error-banner {
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #f87171;
+}
+
+/* Responsive fix for the expanded modal */
+@media screen and (max-width: 600px) {
+  .details-grid {
+    grid-template-columns: 1fr; /* Stack columns on small screens */
+    gap: 1rem;
+  }
+  .modal-content.modal-large {
+    padding: 1.5rem;
+  }
+}

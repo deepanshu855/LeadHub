@@ -1,6 +1,11 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../AuthProvider";
-import { getMe, loginUser, registerUser } from "../services/auth.api";
+import {
+  getMe,
+  loginUser,
+  registerUser,
+  logoutUser,
+} from "../services/auth.api";
 // import { toast } from "react-toastify";
 
 export const useAuth = () => {
@@ -40,10 +45,28 @@ export const useAuth = () => {
     }
   };
 
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      const response = await logoutUser();
+      setUser(null);
+      // toast.success("Logged out successfully!", {
+      //   autoClose: 1000,
+      // });
+    } catch (error) {
+      // toast.error(error.response?.data?.message || "Something went wrong.", {
+      //   autoClose: 2000,
+      // });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     user,
     handleLogin,
     handleRegister,
+    handleLogout,
   };
 };

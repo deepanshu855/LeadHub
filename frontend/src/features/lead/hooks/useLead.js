@@ -22,7 +22,7 @@ export const useLead = () => {
     try {
       setLoading(true);
       const data = await getLeads();
-      return data;
+      setLeads(data.leads);
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong.");
     } finally {
@@ -34,7 +34,7 @@ export const useLead = () => {
     try {
       setLoading(true);
       const data = await updateLead(id, status);
-      return data;
+      await handleGetLeads();
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong.");
     } finally {

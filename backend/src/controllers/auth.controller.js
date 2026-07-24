@@ -79,7 +79,7 @@ export const registerAdminController = async (req, res, next) => {
 };
 
 export const getMeController = async (req, res, next) => {
-  const {id} = req.user;
+  const { id } = req.user;
 
   const user = await adminModel.findById(id).select("-password");
 
@@ -92,5 +92,16 @@ export const getMeController = async (req, res, next) => {
   res.status(200).json({
     message: "User details found successfully",
     user,
+  });
+};
+
+export const logoutController = async (req, res, next) => {
+  const token = req.cookies.token;
+  // console.log(req.cookies)
+  res.clearCookie("token");
+
+  res.status(200).json({
+    success: true,
+    message: "Logout successfully",
   });
 };

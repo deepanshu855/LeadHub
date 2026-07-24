@@ -8,7 +8,6 @@
   width: 100%;
 }
 
-/* Flexbox Layout for the Navbar Container */
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -22,8 +21,9 @@
 .navbar-logo a {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb; /* Modern Blue */
+  color: #2563eb;
   letter-spacing: -0.5px;
+  text-decoration: none; /* No underline */
 }
 
 /* Navigation Links - Flexbox */
@@ -38,10 +38,18 @@
   font-weight: 500;
   color: #4b5563;
   transition: color 0.3s ease;
+  text-decoration: none; /* Ensures no underline */
 }
 
 .nav-link:hover {
   color: #2563eb;
+}
+
+/* Active Class styling from NavLink */
+.nav-link.active {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none; /* strictly no underline */
 }
 
 /* Primary Button Styling */
@@ -51,6 +59,7 @@
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
   font-weight: 600;
+  text-decoration: none;
   transition:
     background-color 0.3s ease,
     transform 0.2s ease;
@@ -79,19 +88,19 @@
 
 .nav-cta-mobile {
   display: none;
+  text-decoration: none;
 }
 
 /* Responsive Design: Tablet & Mobile */
 @media screen and (max-width: 768px) {
   .navbar-actions {
-    display: none; /* Hide desktop button */
+    display: none;
   }
 
   .hamburger-menu {
-    display: flex; /* Show hamburger */
+    display: flex;
   }
 
-  /* Mobile Menu Off-Canvas Styling */
   .navbar-links {
     position: absolute;
     top: 100%;
@@ -104,7 +113,8 @@
     transition: left 0.3s ease;
   }
 
-  .navbar-links.active {
+  /* Changed from .active to .mobile-active to prevent conflict with NavLink's active class */
+  .navbar-links.mobile-active {
     left: 0;
   }
 
@@ -115,9 +125,9 @@
     padding: 0.6rem 1.5rem;
     border-radius: 6px;
     margin-top: 1rem;
+    text-decoration: none;
   }
 
-  /* Hamburger Animation */
   .bar.open:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
