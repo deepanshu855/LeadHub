@@ -72,8 +72,25 @@ export const registerAdminController = async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: "Admin created successfully",
-    admin: {
+    user: {
       email,
     },
+  });
+};
+
+export const getMeController = async (req, res, next) => {
+  const {id} = req.user;
+
+  const user = await adminModel.findById(id).select("-password");
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User doesn't exist",
+    });
+  }
+
+  res.status(200).json({
+    message: "User details found successfully",
+    user,
   });
 };
