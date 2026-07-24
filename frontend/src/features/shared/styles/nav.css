@@ -1,0 +1,130 @@
+/* Navbar Base Styles */
+.navbar-header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+/* Flexbox Layout for the Navbar Container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+/* Logo Styling */
+.navbar-logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb; /* Modern Blue */
+  letter-spacing: -0.5px;
+}
+
+/* Navigation Links - Flexbox */
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4b5563;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+}
+
+/* Primary Button Styling */
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* Hide Mobile Elements on Desktop */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: 0.3s ease;
+}
+
+.nav-cta-mobile {
+  display: none;
+}
+
+/* Responsive Design: Tablet & Mobile */
+@media screen and (max-width: 768px) {
+  .navbar-actions {
+    display: none; /* Hide desktop button */
+  }
+
+  .hamburger-menu {
+    display: flex; /* Show hamburger */
+  }
+
+  /* Mobile Menu Off-Canvas Styling */
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    background-color: #ffffff;
+    flex-direction: column;
+    padding: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: left 0.3s ease;
+  }
+
+  .navbar-links.active {
+    left: 0;
+  }
+
+  .nav-cta-mobile {
+    display: inline-block;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+  }
+
+  /* Hamburger Animation */
+  .bar.open:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .bar.open:nth-child(2) {
+    opacity: 0;
+  }
+  .bar.open:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
