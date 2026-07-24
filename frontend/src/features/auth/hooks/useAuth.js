@@ -6,7 +6,7 @@ import {
   registerUser,
   logoutUser,
 } from "../services/auth.api";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const useAuth = () => {
   const { loading, setLoading, user, setUser } = useContext(AuthContext);
@@ -16,13 +16,13 @@ export const useAuth = () => {
     try {
       const response = await loginUser(username, password);
       setUser(response.user);
-      // toast.success("Logged in successfully!", {
-      //   autoClose: 1000,
-      // });
+      toast.success("Logged in successfully!", {
+        autoClose: 1000,
+      });
     } catch (error) {
-      // toast.error(error.response?.data?.message || "Something went wrong.", {
-      //   autoClose: 2000,
-      // });
+      toast.error(error.response?.data?.message || "Something went wrong.", {
+        autoClose: 2000,
+      });
     } finally {
       setLoading(false);
     }
@@ -50,13 +50,13 @@ export const useAuth = () => {
     try {
       const response = await logoutUser();
       setUser(null);
-      // toast.success("Logged out successfully!", {
-      //   autoClose: 1000,
-      // });
+      toast.success("Logged out successfully!", {
+        autoClose: 1000,
+      });
     } catch (error) {
-      // toast.error(error.response?.data?.message || "Something went wrong.", {
-      //   autoClose: 2000,
-      // });
+      toast.error(error.response?.data?.message || "Something went wrong.", {
+        autoClose: 2000,
+      });
     } finally {
       setLoading(false);
     }

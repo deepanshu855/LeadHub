@@ -1,12 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useLead } from "../../lead/hooks/useLead.js";
 import { useAuth } from "../../auth/hooks/useAuth.js";
-import "../styles/dashboard.css";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  LayoutDashboard,
+  LogOut,
+  Search,
+  Users,
+  Sparkles,
+  PhoneCall,
+  CheckCircle,
+  X,
+  User,
+  Mail,
+  DollarSign,
+  Calendar,
+  MessageSquare,
+  Inbox,
+  Edit3,
+} from "lucide-react";
+import "../styles/dashboard.css";
+import Footer from "../../shared/components/Footer.jsx";
+
+// Animation Variants
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 const Dashboard = () => {
   const { leads, loading, error, handleGetLeads, handleUpdateLead } = useLead();
-  const { handleLogout } = useAuth();
+  const { user, handleLogout } = useAuth();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -58,7 +88,6 @@ const Dashboard = () => {
     }
   };
 
-  // Helper function to format the MongoDB timestamp safely
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     const options = {
@@ -77,13 +106,19 @@ const Dashboard = () => {
       <nav className="dash-nav">
         <div className="dash-nav-container">
           <div className="dash-brand">
+            <div className="dash-logo-icon">
+              <LayoutDashboard size={18} />
+            </div>
             <span className="dash-logo">LeadHub</span>
-            <span className="dash-title">Admin Dashboard</span>
+            <span className="dash-divider">/</span>
+            <span className="dash-title">Overview</span>
           </div>
           <div className="dash-user-actions">
-            <span className="dash-email">admin@leadhub.com</span>
+            <span className="dash-email">
+              {user.email}
+            </span>
             <button onClick={submitLogout} className="btn-logout">
-              Logout
+              <LogOut size={16} /> Logout
             </button>
           </div>
         </div>
@@ -104,38 +139,44 @@ const Dashboard = () => {
         )}
 
         {/* Summary Cards */}
-        <section className="stats-grid">
-          {/* ... (Keep your existing stat cards here) ... */}
-          <div className="stat-card">
+        <motion.section
+          className="stats-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={fadeUp} className="stat-card">
             <div
-              className="stat-icon"
+              className="stat-icon-wrapper"
               style={{ backgroundColor: "#eff6ff", color: "#2563eb" }}
             >
-              📊
+              <Users size={20} />
             </div>
             <div className="stat-info">
               <span className="stat-value">{loading ? "-" : totalLeads}</span>
               <span className="stat-label">Total Leads</span>
             </div>
-          </div>
-          <div className="stat-card">
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="stat-card">
             <div
-              className="stat-icon"
-              style={{ backgroundColor: "#eff6ff", color: "#3b82f6" }}
+              className="stat-icon-wrapper"
+              style={{ backgroundColor: "#f5f3ff", color: "#8b5cf6" }}
             >
-              🆕
+              <Sparkles size={20} />
             </div>
             <div className="stat-info">
               <span className="stat-value">{loading ? "-" : newLeads}</span>
-              <span className="stat-label">New</span>
+              <span className="stat-label">New Leads</span>
             </div>
-          </div>
-          <div className="stat-card">
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="stat-card">
             <div
-              className="stat-icon"
+              className="stat-icon-wrapper"
               style={{ backgroundColor: "#fff7ed", color: "#f97316" }}
             >
-              📞
+              <PhoneCall size={20} />
             </div>
             <div className="stat-info">
               <span className="stat-value">
@@ -143,43 +184,40 @@ const Dashboard = () => {
               </span>
               <span className="stat-label">Contacted</span>
             </div>
-          </div>
-          <div className="stat-card">
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="stat-card">
             <div
-              className="stat-icon"
+              className="stat-icon-wrapper"
               style={{ backgroundColor: "#f0fdf4", color: "#22c55e" }}
             >
-              ✅
+              <CheckCircle size={20} />
             </div>
             <div className="stat-info">
               <span className="stat-value">{loading ? "-" : closedLeads}</span>
               <span className="stat-label">Closed</span>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Search & Table Section */}
-        <section className="table-section">
-          <div className="search-container">
-            <svg
-              className="search-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search by name or email..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+        <motion.section
+          className="table-section"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="table-header-bar">
+            <div className="search-container">
+              <Search size={18} className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search by name or email..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
 
           <div className="table-container">
@@ -191,7 +229,7 @@ const Dashboard = () => {
                   <th>Budget Range</th>
                   <th>Message</th>
                   <th>Status</th>
-                  <th>Actions</th>
+                  <th className="text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -214,138 +252,183 @@ const Dashboard = () => {
                       <td>
                         <div className="skeleton-box badge-skel"></div>
                       </td>
-                      <td>
+                      <td className="text-right">
                         <div className="skeleton-box btn-skel"></div>
                       </td>
                     </tr>
                   ))
                 ) : filteredLeads.length === 0 ? (
+                  // Empty State
                   <tr>
                     <td colSpan="6">
                       <div className="empty-state">
-                        <div className="empty-icon">📭</div>
+                        <div className="empty-icon-wrapper">
+                          <Inbox size={32} />
+                        </div>
                         <h3>No Leads Found</h3>
                         <p>No leads match your current search criteria.</p>
                       </div>
                     </td>
                   </tr>
                 ) : (
-                  filteredLeads.map((lead) => (
-                    <tr key={lead._id}>
-                      <td className="fw-600">{lead.name}</td>
-                      <td className="text-muted">{lead.email}</td>
-                      <td>{lead.budgetRange}</td>
-                      <td className="truncate" title={lead.message}>
-                        {lead.message}
-                      </td>
-                      <td>
-                        <span className={`status-badge badge-${lead.status}`}>
-                          {lead.status === "close"
-                            ? "Closed"
-                            : lead.status.charAt(0).toUpperCase() +
-                              lead.status.slice(1)}
-                        </span>
-                      </td>
-                      <td>
-                        <button
-                          className="btn-update"
-                          onClick={() => openModal(lead)}
-                        >
-                          View & Update
-                        </button>
-                      </td>
-                    </tr>
-                  ))
+                  // Data Rows
+                  <AnimatePresence>
+                    {filteredLeads.map((lead) => (
+                      <motion.tr
+                        key={lead._id || lead.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        whileHover={{ backgroundColor: "#f9fafb" }}
+                      >
+                        <td className="fw-600">{lead.name}</td>
+                        <td className="text-muted">{lead.email}</td>
+                        <td>
+                          <span className="budget-pill">
+                            {lead.budgetRange}
+                          </span>
+                        </td>
+                        <td className="truncate" title={lead.message}>
+                          {lead.message}
+                        </td>
+                        <td>
+                          <span className={`status-badge badge-${lead.status}`}>
+                            <span className="status-dot"></span>
+                            {lead.status === "close"
+                              ? "Closed"
+                              : lead.status.charAt(0).toUpperCase() +
+                                lead.status.slice(1)}
+                          </span>
+                        </td>
+                        <td className="text-right">
+                          <button
+                            className="btn-update"
+                            onClick={() => openModal(lead)}
+                          >
+                            <Edit3 size={14} /> Update
+                          </button>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </AnimatePresence>
                 )}
               </tbody>
             </table>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       {/* Expanded Lead Details Modal */}
-      {isModalOpen && selectedLead && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div
-            className="modal-content modal-large"
-            onClick={(e) => e.stopPropagation()}
+      <AnimatePresence>
+        {isModalOpen && selectedLead && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
           >
-            <div className="modal-header">
-              <h3>Lead Details</h3>
-              <p>Review information and update status</p>
-            </div>
+            <motion.div
+              className="modal-content modal-large"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-header">
+                <div>
+                  <h3>Lead Details</h3>
+                  <p>Review information and update status</p>
+                </div>
+                <button className="btn-close-modal" onClick={closeModal}>
+                  <X size={20} />
+                </button>
+              </div>
 
-            <div className="modal-body lead-details-body">
-              {/* Data Grid */}
-              <div className="details-grid">
-                <div className="detail-group">
-                  <label>Full Name</label>
-                  <p>{selectedLead.name}</p>
+              <div className="modal-body lead-details-body">
+                {/* Data Grid */}
+                <div className="details-grid">
+                  <div className="detail-group">
+                    <label>
+                      <User size={14} /> Full Name
+                    </label>
+                    <p>{selectedLead.name}</p>
+                  </div>
+                  <div className="detail-group">
+                    <label>
+                      <Mail size={14} /> Email Address
+                    </label>
+                    <p>
+                      <a
+                        href={`mailto:${selectedLead.email}`}
+                        className="detail-link"
+                      >
+                        {selectedLead.email}
+                      </a>
+                    </p>
+                  </div>
+                  <div className="detail-group">
+                    <label>
+                      <DollarSign size={14} /> Budget Range
+                    </label>
+                    <p className="highlight-text">{selectedLead.budgetRange}</p>
+                  </div>
+                  <div className="detail-group">
+                    <label>
+                      <Calendar size={14} /> Submitted At
+                    </label>
+                    <p>{formatDate(selectedLead.createdAt)}</p>
+                  </div>
                 </div>
-                <div className="detail-group">
-                  <label>Email Address</label>
-                  <p>
-                    <a
-                      href={`mailto:${selectedLead.email}`}
-                      className="detail-link"
-                    >
-                      {selectedLead.email}
-                    </a>
-                  </p>
+
+                {/* Full Message Box */}
+                <div className="detail-group message-box">
+                  <label>
+                    <MessageSquare size={14} /> Message / Requirements
+                  </label>
+                  <div className="message-content">{selectedLead.message}</div>
                 </div>
-                <div className="detail-group">
-                  <label>Budget Range</label>
-                  <p className="highlight-text">{selectedLead.budgetRange}</p>
-                </div>
-                <div className="detail-group">
-                  <label>Submitted At</label>
-                  <p>{formatDate(selectedLead.createdAt)}</p>
+
+                <hr className="modal-divider" />
+
+                {/* Action Area */}
+                <div className="detail-group update-section">
+                  <label htmlFor="statusSelect">Update Lead Status</label>
+                  <select
+                    id="statusSelect"
+                    className="modal-select"
+                    value={newStatus}
+                    onChange={(e) => setNewStatus(e.target.value)}
+                  >
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="close">Closed</option>
+                  </select>
                 </div>
               </div>
 
-              {/* Full Message Box */}
-              <div className="detail-group message-box">
-                <label>Message / Requirements</label>
-                <div className="message-content">{selectedLead.message}</div>
-              </div>
-
-              <hr className="modal-divider" />
-
-              {/* Action Area */}
-              <div className="detail-group update-section">
-                <label htmlFor="statusSelect">Update Lead Status</label>
-                <select
-                  id="statusSelect"
-                  className="modal-select"
-                  value={newStatus}
-                  onChange={(e) => setNewStatus(e.target.value)}
+              <div className="modal-actions">
+                <button
+                  className="btn-cancel"
+                  onClick={closeModal}
+                  disabled={loading}
                 >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="close">Closed</option>
-                </select>
+                  Cancel
+                </button>
+                <button
+                  className="btn-save"
+                  onClick={onUpdateStatus}
+                  disabled={loading}
+                >
+                  {loading ? "Updating..." : "Save Changes"}
+                </button>
               </div>
-            </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            <div className="modal-actions">
-              <button
-                className="btn-cancel"
-                onClick={closeModal}
-                disabled={loading}
-              >
-                Close
-              </button>
-              <button
-                className="btn-save"
-                onClick={onUpdateStatus}
-                disabled={loading}
-              >
-                {loading ? "Updating..." : "Update Status"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Footer />
     </div>
   );
 };

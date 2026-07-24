@@ -4,6 +4,7 @@ import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
 import Dashboard from "../features/dashboard/pages/Dashboard";
 import Protected from "../features/auth/component/Protected";
+import PageNotFound from "../features/shared/components/PageNotFound";
 
 export const router = createBrowserRouter([
   {
@@ -14,10 +15,10 @@ export const router = createBrowserRouter([
     path: "/admin/login",
     element: <Login />,
   },
-  {
-    path: "/admin/register",
-    element: <Register />,
-  },
+  // {
+  //   path: "/admin/register",
+  //   element: <Register />,
+  // },
   {
     path: "/admin/dashboard",
     element: (
@@ -25,5 +26,9 @@ export const router = createBrowserRouter([
         <Dashboard />
       </Protected>
     ),
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ]);

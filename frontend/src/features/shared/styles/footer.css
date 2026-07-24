@@ -1,88 +1,104 @@
-/* Footer Base Styles */
+/* --- COMPACT HORIZONTAL SAAS FOOTER --- */
+
 .footer-section {
-  background-color: #111827; /* Dark modern background */
-  color: #e5e7eb;
-  padding: 4rem 2rem 1rem 2rem;
-  margin-top: auto;
+  background-color: #ffffff; /* Crisp white to stand out against the #fafafa page background */
+  border-top: 1px solid #eaeaea;
+  padding: 3rem 2rem 1.5rem; /* Reduced padding for a more compact height */
+  color: #666;
 }
 
-/* CSS Grid for Footer Layout */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  border-bottom: 1px solid #374151;
-  padding-bottom: 3rem;
 }
 
-/* Typography & Colors */
+/* Horizontal Layout for Desktop */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.footer-brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #111;
+}
+
+.logo-icon-small {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #0070f3, #0051b3);
+  border-radius: 6px;
+}
+
 .footer-logo {
-  font-size: 1.8rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.03em;
 }
 
 .footer-description {
-  color: #9ca3af;
-  line-height: 1.6;
-  max-width: 300px;
+  font-size: 0.95rem;
+  margin: 0;
+  color: #666;
+  max-width: 400px;
 }
 
-.footer-heading {
-  color: #ffffff;
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
+/* Elegant Highlighted Badge */
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #f3e8ff, #e0e7ff);
+  color: #4338ca;
+  border-radius: 100px;
+  font-size: 0.85rem;
   font-weight: 600;
+  border: 1px solid rgba(67, 56, 202, 0.15);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.05);
+  transition: transform 0.2s ease;
 }
 
-/* List Styling */
-.footer-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+.footer-badge:hover {
+  transform: translateY(-2px);
 }
 
-.footer-list li,
-.footer-list a {
-  color: #9ca3af;
-  transition: color 0.3s ease;
-}
-
-.footer-list a:hover {
-  color: #3b82f6; /* Modern Blue hover */
-}
-
-/* Footer Bottom Copyright */
 .footer-bottom {
-  text-align: center;
+  width: 100%;
+  border-top: 1px solid #eaeaea;
   padding-top: 1.5rem;
-  color: #6b7280;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  color: #999;
+  display: flex;
+  justify-content: flex-start;
 }
 
-/* Responsive Design: Tablet */
-@media screen and (max-width: 992px) {
-  .footer-container {
-    grid-template-columns: 1fr 1fr; /* Switch to 2 columns on tablet */
-  }
-
-  .brand-col {
-    grid-column: span 2; /* Brand description takes full width */
-  }
+.footer-bottom p {
+  margin: 0;
+  font-weight: 500;
 }
 
-/* Responsive Design: Mobile */
-@media screen and (max-width: 576px) {
-  .footer-container {
-    grid-template-columns: 1fr; /* Stack into 1 column on mobile */
-    gap: 2rem;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
 
-  .brand-col {
-    grid-column: span 1;
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
   }
 }
