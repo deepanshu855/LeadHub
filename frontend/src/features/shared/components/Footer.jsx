@@ -19,12 +19,16 @@ const Footer = () => {
           </div>
 
           {/* Right Side: Required Badge */}
-          <div className="footer-badge-wrapper">
+          <a
+            href="https://digitalheroesco.com/"
+            target="_blank"
+            className="footer-badge-wrapper"
+          >
             <div className="footer-badge">
               <Sparkles size={14} className="badge-icon" />
               <span>Built for Digital Heroes Training Task</span>
             </div>
-          </div>
+          </a>
         </div>
 
         {/* Bottom: Copyright */}
